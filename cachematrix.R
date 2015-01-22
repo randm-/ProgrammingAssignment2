@@ -6,9 +6,11 @@
 ## This function create a "cacheable matix" which caches the matrix inverse
 
 makeCacheMatrix <- function(x = matrix()) {
+        ## Initialize inverse to NULL
         inverse <- NULL
 
         set <- function(y) {
+                ## Set new matrix and set inverse to NULL
                 x <<- y
                 inverse <<- NULL
         }
@@ -33,10 +35,12 @@ cacheSolve <- function(x, ...) {
         inverse <- x$getinverse()
 
         if(!is.null(inverse)) {
+                ## return cached inverse if it is not null
                 message("getting cached data")
                 return(inverse)
         }
 
+        ## compute and save inverse since it is not cached
         data <- x$get()
         inverse <- solve(data, ...)
         x$setinverse(inverse)
